@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -28,6 +29,7 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -50,14 +52,32 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+@Preview
 @Composable
 fun MessagingUi() {
     val context = LocalContext.current.applicationContext
-    TopBar()
+    Column(Modifier.fillMaxHeight().fillMaxWidth(),verticalArrangement = Arrangement.SpaceBetween) {
+        TopBar()
+        BottomBar()
+    }
 }
 
-@Preview
+@Composable
+fun BottomBar() {
+    Row(
+        modifier = Modifier
+            .padding(12 .dp,4.dp)
+            .fillMaxWidth()
+            .height(68.dp)
+    ) {
+        OutlinedTextField(
+            value = "Enter something... ",
+            onValueChange = { println(it) },
+            shape = RoundedCornerShape(20.dp)
+        )
+    }
+}
+
 @Composable
 fun TopBar() {
     Row(
