@@ -15,6 +15,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -71,6 +72,8 @@ fun MessagingUi() {
 @Composable
 fun BottomBar() {
     Row(
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(12.dp, 4.dp)
             .fillMaxWidth()
@@ -81,6 +84,11 @@ fun BottomBar() {
             onValueChange = { println(it) },
             shape = RoundedCornerShape(20.dp)
         )
+
+        IconButton(onClick = { println("message sent!") }) {
+            Icon(imageVector = Icons.Default.Send, contentDescription = "send message icon")
+
+        }
     }
 }
 
