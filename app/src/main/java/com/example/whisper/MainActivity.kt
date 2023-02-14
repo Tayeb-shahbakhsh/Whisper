@@ -2,6 +2,7 @@ package com.example.whisper
 
 import android.graphics.fonts.FontStyle
 import android.os.Bundle
+import android.provider.Telephony.Mms.Sent
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -38,6 +39,12 @@ import androidx.compose.ui.unit.dp
 import com.example.whisper.ui.theme.Shapes
 import com.example.whisper.ui.theme.WhisperTheme
 
+
+const val SENT = 0
+const val RECIEVED = 1
+
+data class (val status: Int,val message: String)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,17 +72,29 @@ fun MessagingUi() {
             .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
     ) {
         TopBar()
-        NewSentMessage()
+        MessagesList()
         BottomBar()
     }
 }
 
 @Composable
-fun NewSentMessage(){
-    Card(shape = AbsoluteRoundedCornerShape(1.dp,16.dp,16.dp,16.dp), backgroundColor = Color.LightGray, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
-        Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+fun MessagesList(messages: List<>){
+
+}
+
+@Composable
+fun Message(status: Int){
+    if (status == SENT){
+        Card(shape = AbsoluteRoundedCornerShape(16.dp,1.dp,16.dp,16.dp), backgroundColor = Color.LightGray, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
+            Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+        }
+    }else if (status == RECIEVED){
+        Card(shape = AbsoluteRoundedCornerShape(1.dp,16.dp,16.dp,16.dp), backgroundColor = MaterialTheme.colors.background, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
+            Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+        }
     }
 }
+
 
 @Composable
 fun BottomBar() {
