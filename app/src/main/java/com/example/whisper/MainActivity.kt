@@ -10,6 +10,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -64,7 +65,15 @@ fun MessagingUi() {
             .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
     ) {
         TopBar()
+        NewSentMessage()
         BottomBar()
+    }
+}
+
+@Composable
+fun NewSentMessage(){
+    Card(shape = AbsoluteRoundedCornerShape(1.dp,16.dp,16.dp,16.dp), backgroundColor = Color.LightGray, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
+        Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
     }
 }
 
@@ -79,7 +88,7 @@ fun BottomBar() {
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(12.dp, 4.dp)
+            .padding(12.dp, 16.dp)
             .fillMaxWidth()
             .height(68.dp)
     ) {
@@ -94,7 +103,6 @@ fun BottomBar() {
 
         IconButton(onClick = { println("message sent!") }) {
             Icon(imageVector = Icons.Default.Send, contentDescription = "send message icon")
-
         }
     }
 }
@@ -103,6 +111,7 @@ fun BottomBar() {
 fun TopBar() {
     Row(
         modifier = Modifier
+            .padding(top = 8.dp)
             .fillMaxWidth()
             .height(64.dp),
         Arrangement.SpaceEvenly,
