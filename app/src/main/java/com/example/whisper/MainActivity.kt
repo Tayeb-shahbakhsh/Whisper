@@ -15,7 +15,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,11 +53,16 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Preview
 @Composable
 fun MessagingUi() {
     val context = LocalContext.current.applicationContext
-    Column(Modifier.fillMaxHeight().fillMaxWidth(),verticalArrangement = Arrangement.SpaceBetween) {
+    Column(
+        Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
+    ) {
         TopBar()
         BottomBar()
     }
@@ -64,17 +70,32 @@ fun MessagingUi() {
 
 @Composable
 fun BottomBar() {
+
+    var value by remember {
+        mutableStateOf("")
+    }
+
     Row(
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(12 .dp,4.dp)
+            .padding(12.dp, 4.dp)
             .fillMaxWidth()
             .height(68.dp)
     ) {
         OutlinedTextField(
-            value = "Enter something... ",
-            onValueChange = { println(it) },
+            value = value,
+            onValueChange = { value = it },
+            label = {
+                    Text(text = "Enter message ...", color = Color.LightGray)
+            },
             shape = RoundedCornerShape(20.dp)
         )
+
+        IconButton(onClick = { println("message sent!") }) {
+            Icon(imageVector = Icons.Default.Send, contentDescription = "send message icon")
+
+        }
     }
 }
 
