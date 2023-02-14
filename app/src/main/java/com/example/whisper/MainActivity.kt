@@ -70,6 +70,86 @@ val messagesList = listOf<Message>(
     Message(RECIEVED, "Whats upp, how are you doing?"),
     Message(SENT, "Fine thank you, what about u"),
     Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
 )
 
 class MainActivity : ComponentActivity() {
@@ -123,22 +203,26 @@ fun MessagesList(messages: List<Message>) {
 @Composable
 fun MessageCard(status: Int, message: String) {
     if (status == SENT) {
-        Card(
-            shape = AbsoluteRoundedCornerShape(16.dp, 1.dp, 16.dp, 16.dp),
-            backgroundColor = Color.LightGray,
-            contentColor = Color.DarkGray,
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(modifier = Modifier.padding(16.dp), text = message)
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+            Card(
+                shape = AbsoluteRoundedCornerShape(16.dp, 1.dp, 16.dp, 16.dp),
+                backgroundColor = Color.LightGray,
+                contentColor = Color.DarkGray,
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(modifier = Modifier.padding(16.dp), text = message)
+            }
         }
     } else if (status == RECIEVED) {
-        Card(
-            shape = AbsoluteRoundedCornerShape(1.dp, 16.dp, 16.dp, 16.dp),
-            backgroundColor = MaterialTheme.colors.background,
-            contentColor = Color.DarkGray,
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(modifier = Modifier.padding(16.dp), text = message)
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+            Card(
+                shape = AbsoluteRoundedCornerShape(1.dp, 16.dp, 16.dp, 16.dp),
+                backgroundColor = MaterialTheme.colors.background,
+                contentColor = Color.DarkGray,
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(modifier = Modifier.padding(16.dp), text = message)
+            }
         }
     }
 }
