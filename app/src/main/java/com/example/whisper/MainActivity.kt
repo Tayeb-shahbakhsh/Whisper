@@ -2,6 +2,7 @@ package com.example.whisper
 
 import android.graphics.fonts.FontStyle
 import android.os.Bundle
+import android.provider.Telephony.Mms.Sent
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -10,6 +11,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -36,6 +38,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.whisper.ui.theme.Shapes
 import com.example.whisper.ui.theme.WhisperTheme
+
+
+const val SENT = 0
+const val RECIEVED = 1
+
+data class (val status: Int,val message: String)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,9 +72,29 @@ fun MessagingUi() {
             .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
     ) {
         TopBar()
+        MessagesList()
         BottomBar()
     }
 }
+
+@Composable
+fun MessagesList(messages: List<>){
+
+}
+
+@Composable
+fun Message(status: Int){
+    if (status == SENT){
+        Card(shape = AbsoluteRoundedCornerShape(16.dp,1.dp,16.dp,16.dp), backgroundColor = Color.LightGray, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
+            Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+        }
+    }else if (status == RECIEVED){
+        Card(shape = AbsoluteRoundedCornerShape(1.dp,16.dp,16.dp,16.dp), backgroundColor = MaterialTheme.colors.background, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
+            Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+        }
+    }
+}
+
 
 @Composable
 fun BottomBar() {
@@ -79,7 +107,7 @@ fun BottomBar() {
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(12.dp, 4.dp)
+            .padding(12.dp, 16.dp)
             .fillMaxWidth()
             .height(68.dp)
     ) {
@@ -94,7 +122,6 @@ fun BottomBar() {
 
         IconButton(onClick = { println("message sent!") }) {
             Icon(imageVector = Icons.Default.Send, contentDescription = "send message icon")
-
         }
     }
 }
@@ -103,6 +130,7 @@ fun BottomBar() {
 fun TopBar() {
     Row(
         modifier = Modifier
+            .padding(top = 8.dp)
             .fillMaxWidth()
             .height(64.dp),
         Arrangement.SpaceEvenly,
