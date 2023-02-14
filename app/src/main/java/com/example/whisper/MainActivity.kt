@@ -11,6 +11,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.Bottom
+import androidx.compose.foundation.layout.Arrangement.End
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -43,7 +47,110 @@ import com.example.whisper.ui.theme.WhisperTheme
 const val SENT = 0
 const val RECIEVED = 1
 
-data class (val status: Int,val message: String)
+data class Message(val status: Int, val message: String)
+
+val messagesList = listOf<Message>(
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+    Message(SENT, "Hi"),
+    Message(RECIEVED, "Hi T!"),
+    Message(RECIEVED, "Whats upp, how are you doing?"),
+    Message(SENT, "Fine thank you, what about u"),
+    Message(RECIEVED, "Me too Im ok :)"),
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,31 +173,56 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MessagingUi() {
     val context = LocalContext.current.applicationContext
-    Column(
-        Modifier
-            .fillMaxHeight()
-            .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        TopBar()
-        MessagesList()
+
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomStart) {
+        Column(
+            Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(), verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            TopBar()
+            MessagesList(messagesList)
+        }
         BottomBar()
     }
 }
 
 @Composable
-fun MessagesList(messages: List<>){
-
+fun MessagesList(messages: List<Message>) {
+    LazyColumn(
+        contentPadding = PaddingValues(8.dp), modifier = Modifier
+            .padding(bottom = 76.dp)
+            .fillMaxSize(), verticalArrangement = Arrangement.Bottom
+    ) {
+        items(messages) { message ->
+            MessageCard(status = message.status, message = message.message)
+        }
+    }
 }
 
 @Composable
-fun Message(status: Int){
-    if (status == SENT){
-        Card(shape = AbsoluteRoundedCornerShape(16.dp,1.dp,16.dp,16.dp), backgroundColor = Color.LightGray, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
-            Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+fun MessageCard(status: Int, message: String) {
+    if (status == SENT) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+            Card(
+                shape = AbsoluteRoundedCornerShape(16.dp, 1.dp, 16.dp, 16.dp),
+                backgroundColor = Color.LightGray,
+                contentColor = Color.DarkGray,
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(modifier = Modifier.padding(16.dp), text = message)
+            }
         }
-    }else if (status == RECIEVED){
-        Card(shape = AbsoluteRoundedCornerShape(1.dp,16.dp,16.dp,16.dp), backgroundColor = MaterialTheme.colors.background, contentColor = Color.DarkGray,modifier = Modifier.padding(16.dp)) {
-            Text(modifier = Modifier.padding(16.dp), text = "hello, whats up??")
+    } else if (status == RECIEVED) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start) {
+            Card(
+                shape = AbsoluteRoundedCornerShape(1.dp, 16.dp, 16.dp, 16.dp),
+                backgroundColor = MaterialTheme.colors.background,
+                contentColor = Color.DarkGray,
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(modifier = Modifier.padding(16.dp), text = message)
+            }
         }
     }
 }
@@ -115,7 +247,7 @@ fun BottomBar() {
             value = value,
             onValueChange = { value = it },
             label = {
-                    Text(text = "Enter message ...", color = Color.LightGray)
+                Text(text = "Enter message ...", color = Color.LightGray)
             },
             shape = RoundedCornerShape(20.dp)
         )
