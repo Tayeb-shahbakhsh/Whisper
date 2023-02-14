@@ -52,11 +52,17 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Preview
 @Composable
 fun MessagingUi() {
     val context = LocalContext.current.applicationContext
-    Column(Modifier.fillMaxHeight().fillMaxWidth(),verticalArrangement = Arrangement.SpaceBetween) {
+    Column(
+        Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
         TopBar()
         BottomBar()
     }
@@ -66,7 +72,7 @@ fun MessagingUi() {
 fun BottomBar() {
     Row(
         modifier = Modifier
-            .padding(12 .dp,4.dp)
+            .padding(12.dp, 4.dp)
             .fillMaxWidth()
             .height(68.dp)
     ) {
